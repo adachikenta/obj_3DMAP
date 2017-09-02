@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>Civilian Casualties in Afghanistan, 2009 - 2010</title>
+<meta name="description" content="A visualization of civilian casualties in Afghanistan from 2009 to2010"> 
+<meta name="keywords" content="afghanistan, afghanistan casualties, civilian casualties, civilians, plume graph, data visualization, graph, visualization, infographic" /> 
+<link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="RequestAnimationFrame.js"></script>
+<script type="text/javascript" src="Detector.js"></script>
+<script type="text/javascript" src="three.js"></script>
+<script type="text/javascript">
+var disable = false;
+window.onload = function() {
+
+	var browsers = {
+	 
+	'firefox':{url: 'http://www.mozilla.com/en-US/firefox/all-beta.html', label:'Firefox 4', exp:'Firefox 4 is currently in beta.'}, 
+	'chrome':{url: 'http://www.google.com/chrome', label:'Chrome 9', exp:'Chrome 9 is the current, <br/>stable version of Chrome.'},
+	'webkit':{url: 'http://nightly.webkit.org/', label:'Safari 10.6', exp:'The nightly build of Safari <br/>is called "Webkit."'}};
+		
+	if ( ! Detector.webgl ) {
+	
+		var getwebgl = document.createElement('div');
+		getwebgl.setAttribute('id', 'getwebgl');
+		
+		var inner = document.createElement('div');
+		inner.setAttribute('class', 'inner');
+		var whatis = document.createElement('p');
+		
+		whatis.innerHTML = "<strong>You'll need a WebGL enabled browser in order to view this page</strong>.<br/><br/> WebGL is a new standard that allows developers to leverage a user's graphics card in ways hitherto impossible on the web."
+						+ " Soon, all modern web browsers will support this standard &hellip; hopefully. However, at the time of my this writing this, <strong>only the following web browsers support WebGL</strong>:";
+		
+		var browserlist = document.createElement('ul');
+		
+		for (var i in browsers) {
+			var li = document.createElement('li');
+			
+			li.innerHTML = '<a target="_blank" href="'+browsers[i].url+'"><img src="browser-'+i+'.png" alt="'+browsers[i].label+'" />'+browsers[i].label+'<span class="about">'+browsers[i].exp+'</span></a>';
+			browserlist.appendChild(li);
+		}
+		
+		inner.appendChild(whatis);
+		inner.appendChild(browserlist);
+		getwebgl.appendChild(inner);
+		document.body.appendChild(getwebgl);
+		return;
+	}
+	
+	document.getElementById('vis').style.display = 'block';
+	
+	var vis = new PlumeGraph(data, {
+			'CAS':{color:0x57A0DD}, 
+			'CCA':{color:0x2979ED}, 
+			'EOF':{color:0x7C00FF},
+			'DF':{color:0x3A4EAF}, 
+			'IDF':{color:0x6D93B5}, 
+			'RTA':{color:0x57D3CA}, 
+			'UNKNOWN':{color:0x48EFBF}, 
+			'I_DF':{color:0x721B17},
+			'I_IDF':{color:0xB78380}, 
+			'I_IED':{color:0x8F5E54},
+			'I_COMPLEX':{color:0xFF8C5A}, 
+			'I_OTHER':{color:0xDE2F6F}
+		});
+		
+	
+	function loop() {
+		requestAnimationFrame( loop );
+		vis.draw();
+	}
+	
+	loop();
+	
+}
+	
+function showAbout() {
+	disable = true;
+	var a = document.getElementById('about');
+	a.style.height =  window.innerHeight+'px';
+	a.getElementsByClassName('inner')[0].style.top = '60px';
+	a.addEventListener('mouseup', function() {
+		a.style.height = '0';
+		disable = false;
+	}, false);
+	return false;
+}
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2369900-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<noscript>
+Turn on JavaScript...
+</noscript>
+<div id="vis">
+<div id="about">
+<div class="inner">
+
+<p class="def"><strong>plume graph</strong> &mdash; <em>noun</em>.  A graphic means of visualizing change in data on a 2-dimensional map in which altitude represents the passage of time.</p>
+
+<div class="cred left">
+<p class="who"><a href="http://www.johnbohannon.org/" target="_blank">John Bohannon</a></p>
+<p class="what">Molecular Biologist / Journalist</p>
+
+<p>This is a visualization of a military data set released to me after<br/>I was embedded with NATO forces in Afghanistan in October 2010. In this view, the rhythms of the war in time and space emerge. These data represent an ongoing tragedy. But we shouldn't look away. Without such data, we can never know the true cost of the war.</p>
+
+<p>Download these data, and read the story that describes them: <a href="http://www.sciencemag.org/hottopics/afghanistan/" target="_blank" >http://www.sciencemag.org/hottopics/afghanistan/</a></p>
+
+
+</div>
+
+<div class="cred">
+<p class="who"><a href="http://georgemichaelbrower.com" target="_blank">George Michael Brower</a></p>
+<p class="what">Designer & Developer</p>
+
+<p>If animated data visualization is something akin to shooting film,<br/>the plume graph is a long exposure photo. In this particular data set, one can count five dimensions of information, modeled in three dimensional space and ultimately flattened to a two dimensional image. The power of this technique lies in the fact that such multi-dimensional information can be digested in moments. My hope is that this framework will become repurposable for use with other data sets in the very near future.</p>
+
+<p>That this visualization can be viewed in-browser is a testament to the promise of modern web technologies such as WebGL, HTML5 and CSS3, all of which were leveraged in this piece. As browsers adopt support for these standards, developers and their audience will enjoy fewer barriers to rich experiences, hopefully increasing the visibility and appreciation of code as art. Thanks to <a href="http://mrdoob.com" target="_blank">Ricardo Cabello</a> for <a href="https://github.com/mrdoob/three.js/" target="_blank">three.js</a> as well as <a target="_blank" href="http://chrislauritzen.net/">Chris Lauritzen</a> and <a target="_blank" href="http://jonobr1.com">Jono Brandel</a>.</p>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="overlay">
+<div class="inner">
+<h1>Civilian Casualties in Afghanistan, 2009 - 2010</h1>
+<ul>
+	<li id="military">
+	Caused by Military
+	<span class="total"></span></li>
+	
+	<li id="CAS">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span>
+	</span>Jets<span class="total"></span></li>
+	
+	<li id="CCA">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Helicopters<span class="total"></span></li>
+	
+	<li id="EOF">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Escalation of Force<span class="total"></span></li>
+	
+	<li id="DF">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Direct Fire<span class="total"></span></li>
+	
+	<li id="IDF">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Indirect Fire<span class="total"></span></li>
+	
+	<li id="RTA">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Road Traffic Accident<span class="total"></span></li>
+	
+	<li id="UNKNOWN">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Unknown<span class="total"></span></li>
+</ul>
+
+<ul>
+	<li id="insurgent">
+	Caused by Insurgents
+	<span class="total"></span></li>
+
+	<li id="I_DF">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>
+	Direct Fire<span class="total"></span></li>
+	
+	<li id="I_IDF">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>
+	Indirect Fire<span class="total"></span></li>
+	
+	<li id="I_IED">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>
+	Improvised Explosive Device<span class="total"></span></li>
+	
+	<li id="I_COMPLEX">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Complex<span class="total"></span></li>
+	
+	<li id="I_OTHER">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Other<span class="total"></span></li>
+	
+</ul>
+
+<ul>
+	
+	<li id="killed">
+	<span class="title">
+	<span class="swatch" >
+	</span>Killed</span>&nbsp;<span class="total"></span></li>
+	
+	<li id="wounded">
+	<span class="title">
+	<span class="swatch" style="width: 2px; height: 2px; margin-top: 8px; margin-left: 3px; margin-right: 18px;">
+	</span>Wounded</span>&nbsp;<span class="total"></span></li>
+
+	
+</ul>
+
+<a id="aboutlink" href="#" onclick="return showAbout()">
+About this visualization &hellip;
+</a>
+
+</div>
+</div>
+</div>
+</body>
+</html>
