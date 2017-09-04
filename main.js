@@ -59,7 +59,8 @@ var PlumeGraph = function(data, casualtyTypes) {
 		var lockTypes = false;
 		var lockStatus = false;
 		var _bar = this;
-		var numMonths = 24;
+		//var numMonths = 24;
+		var numMonths = 12;
 		var ee = 1;
 		
 		var killedTotalE = new Easer(easers).e(ee);
@@ -360,8 +361,10 @@ var PlumeGraph = function(data, casualtyTypes) {
 				}
 			}
 			
-			var barWidth = 3;
-			barSpacing = 7;
+			//var barWidth = 3;
+			var barWidth = 12;
+			//barSpacing = 7;
+			barSpacing = 20;
 			g.save();
 			g.translate(33, 45);
 
@@ -373,15 +376,18 @@ var PlumeGraph = function(data, casualtyTypes) {
 				g.scale(1, -1);
 				g.clearRect(0, 0, window.innerWidth, 40);
 				g.textAlign='center';
-				g.font = "8px 'Lucida Grande', sans-serif";
-				g.fillText('2009', (barWidth+barSpacing)*6, 25);
-				g.fillText('2010', (barWidth+barSpacing)*18+20, 25);
+				//g.font = "8px 'Lucida Grande', sans-serif";
+				g.font = "12px 'Lucida Grande', sans-serif";
+                //g.fillText('2009', (barWidth+barSpacing)*6, 25);
+				g.fillText('Layer', (barWidth+barSpacing)*6, 25);
+				//g.fillText('2010', (barWidth+barSpacing)*18+20, 25);
 				g.restore();
 			}
 	
 			for (var i = 0; i < numMonths; i++) {
 				
-				g.font = "8px 'Lucida Grande', sans-serif";
+				//g.font = "8px 'Lucida Grande', sans-serif";
+				g.font = "12px 'Lucida Grande', sans-serif";
 				g.fillStyle = "#000";
 				
 				var x = i*(barWidth+barSpacing);
@@ -466,7 +472,7 @@ var PlumeGraph = function(data, casualtyTypes) {
 	
 	var x = 0, y = 500;
 	
-	var monthSpacing = 50;
+	var monthSpacing = 100;
 	
 	var scene = new THREE.Scene();
 	var pmouseX=null, pmouseY=null;
@@ -510,7 +516,8 @@ var PlumeGraph = function(data, casualtyTypes) {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
-		barCanvas.domElement.width = 315;
+		//barCanvas.domElement.width = 315;
+		barCanvas.domElement.width = 515;
 		barCanvas.update();
 		barCanvas.firstDraw = true;
 	}
@@ -636,9 +643,11 @@ var PlumeGraph = function(data, casualtyTypes) {
 			this.bundles.push(bundle);			
 		}
 		
-		this.line = addLine(x, 0, y, x, monthSpacing*24, y);
+		//this.line = addLine(x, 0, y, x, monthSpacing*24, y);
+		this.line = addLine(x, 0, y, x, monthSpacing*12, y);
 		
-		billboard(labelSprites[spriteIndex], x, monthSpacing*25, y );
+		//billboard(labelSprites[spriteIndex], x, monthSpacing*25, y );
+		billboard(labelSprites[spriteIndex], x, monthSpacing*12, y );
 		
 	}
 
@@ -690,16 +699,23 @@ var PlumeGraph = function(data, casualtyTypes) {
 	
 	var pp = [];
 	
-	pp.push(pillars['N'] = new Pillar(11, data['N'], -240, -280));
-	pp.push(pillars['C'] = new Pillar(9,  data['C'], -50, -380));
-	pp.push(pillars['E'] = new Pillar(10, data['E'], 50, -265));
-	pp.push(pillars['S'] = new Pillar(14, data['S'], 200, -30));
-	pp.push(pillars['W'] = new Pillar(12, data['W'], 0, 280));
-	pp.push(pillars['SW'] = new Pillar(13, data['SW'], 350, 280));
+	pp.push(pillars['N']  = new Pillar(11, data['N'], 433,-250      ));
+	pp.push(pillars['C']  = new Pillar(9,  data['C'], 500,0         ));
+	pp.push(pillars['E']  = new Pillar(10, data['E'], 433,250       ));
+	pp.push(pillars['S']  = new Pillar(14, data['S'], 250,433       ));
+	pp.push(pillars['W']  = new Pillar(12, data['W'], 0,500         ));
+	pp.push(pillars['SW'] = new Pillar(13, data['SW'],-250,433      ));
+	pp.push(pillars['N']  = new Pillar(11, data['N'], -433,250      ));
+	pp.push(pillars['C']  = new Pillar(9,  data['C'], -500,0        ));
+	pp.push(pillars['E']  = new Pillar(10, data['E'], -433,-250     ));
+	pp.push(pillars['S']  = new Pillar(14, data['S'], -250,-433     ));
+	pp.push(pillars['W']  = new Pillar(12, data['W'], 0,-500        ));
+	pp.push(pillars['SW'] = new Pillar(13, data['SW'],250,-433      ));
 
 	var monthIndices = [8, 6, 5, 4, 5, 3, 3, 4, 14, 2, 1, 0, 7, 6, 5, 4, 5, 3, 3, 4, 14, 2, 1, 0];
 		
-	for (var m = 0; m < 24; m++) {
+	//for (var m = 0; m < 24; m++) {
+	for (var m = 0; m < 12; m++) {
 		var count = 0;
 		var first = pp[pp.length-1];
 		var last = pp[0];
@@ -714,13 +730,13 @@ var PlumeGraph = function(data, casualtyTypes) {
 				
 		var ang = Math.PI/12;
 				
-		addLine(last.x, m*monthSpacing, last.y, 
-				last.x-Math.cos(ang)*120, m*monthSpacing, last.y-Math.sin(ang)*120);
+		//addLine(last.x, m*monthSpacing, last.y, 
+		//		last.x-Math.cos(ang)*120, m*monthSpacing, last.y-Math.sin(ang)*120);
 				
 
 			billboard(labelSprites[monthIndices[m%monthIndices.length]], first.x+100, m*monthSpacing, first.y+100);
 
-			billboard(labelSprites[monthIndices[m%monthIndices.length]], last.x-Math.cos(ang)*155, m*monthSpacing, last.y-Math.sin(ang)*155);
+			//billboard(labelSprites[monthIndices[m%monthIndices.length]], last.x-Math.cos(ang)*155, m*monthSpacing, last.y-Math.sin(ang)*155);
 
 		
 		
