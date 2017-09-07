@@ -1,2 +1,2 @@
-# obj_3DMAP
+# plot3d
 配置図
