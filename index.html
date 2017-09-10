@@ -2,79 +2,38 @@
 <head>
 <title>plot3d</title>
 <meta name="description" content="plot3d"> 
-<meta name="keywords" content="afghanistan, afghanistan casualties, civilian casualties, civilians, plume graph, data visualization, graph, visualization, infographic" /> 
 <link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="data.js"></script>
 <script type="text/javascript" src="RequestAnimationFrame.js"></script>
-<script type="text/javascript" src="Detector.js"></script>
 <script type="text/javascript" src="three.js"></script>
+
 <script type="text/javascript">
 var disable = false;
 window.onload = function() {
-
-	var browsers = {
-	 
-	'firefox':{url: 'http://www.mozilla.com/en-US/firefox/all-beta.html', label:'Firefox 4', exp:'Firefox 4 is currently in beta.'}, 
-	'chrome':{url: 'http://www.google.com/chrome', label:'Chrome 9', exp:'Chrome 9 is the current, <br/>stable version of Chrome.'},
-	'webkit':{url: 'http://nightly.webkit.org/', label:'Safari 10.6', exp:'The nightly build of Safari <br/>is called "Webkit."'}};
-		
-	if ( ! Detector.webgl ) {
-	
-		var getwebgl = document.createElement('div');
-		getwebgl.setAttribute('id', 'getwebgl');
-		
-		var inner = document.createElement('div');
-		inner.setAttribute('class', 'inner');
-		var whatis = document.createElement('p');
-		
-		whatis.innerHTML = "<strong>You'll need a WebGL enabled browser in order to view this page</strong>.<br/><br/> WebGL is a new standard that allows developers to leverage a user's graphics card in ways hitherto impossible on the web."
-						+ " Soon, all modern web browsers will support this standard &hellip; hopefully. However, at the time of my this writing this, <strong>only the following web browsers support WebGL</strong>:";
-		
-		var browserlist = document.createElement('ul');
-		
-		for (var i in browsers) {
-			var li = document.createElement('li');
-			
-			li.innerHTML = '<a target="_blank" href="'+browsers[i].url+'"><img src="browser-'+i+'.png" alt="'+browsers[i].label+'" />'+browsers[i].label+'<span class="about">'+browsers[i].exp+'</span></a>';
-			browserlist.appendChild(li);
-		}
-		
-		inner.appendChild(whatis);
-		inner.appendChild(browserlist);
-		getwebgl.appendChild(inner);
-		document.body.appendChild(getwebgl);
-		return;
-	}
-	
 	document.getElementById('vis').style.display = 'block';
-	
 	var vis = new PlumeGraph(data, {
-			'CAS':{color:0x57A0DD}, 
-			'CCA':{color:0x2979ED}, 
-			'EOF':{color:0x7C00FF},
-			'DF':{color:0x3A4EAF}, 
-			'IDF':{color:0x6D93B5}, 
-			'RTA':{color:0x57D3CA}, 
-			'UNKNOWN':{color:0x48EFBF}, 
-			'I_DF':{color:0x721B17},
-			'I_IDF':{color:0xB78380}, 
-			'I_IED':{color:0x8F5E54},
-			'I_COMPLEX':{color:0xFF8C5A}, 
-			'I_OTHER':{color:0xDE2F6F}
+			'G1':{color:0x57A0DD}, 
+			'G2':{color:0x2979ED}, 
+			'G3':{color:0x7C00FF},
+			'G4':{color:0x3A4EAF}, 
+			'G5':{color:0x6D93B5}, 
+			'G6':{color:0x57D3CA}, 
+			'G7':{color:0x48EFBF}, 
+			'G8':{color:0x721B17},
+			'G9':{color:0xB78380}, 
+			'G10':{color:0x8F5E54},
+			'G11':{color:0xFF8C5A}, 
+			'G12':{color:0xDE2F6F}
 		});
-		
-	
 	function loop() {
 		requestAnimationFrame( loop );
 		vis.draw();
 	}
-	
 	loop();
-	
 }
-	
+
 function showAbout() {
 	disable = true;
 	var a = document.getElementById('about');
@@ -87,46 +46,25 @@ function showAbout() {
 	return false;
 }
 </script>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-2369900-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 </head>
+
 <body>
-<noscript>
-Turn on JavaScript...
-</noscript>
 <div id="vis">
+
 <div id="about">
 <div class="inner">
-
 <p class="def"> &mdash; <strong><em>plot3d</em></strong> &mdash;</p>
-
 <div class="cred left">
 <p class="who"><a href="https://www.google.co.jp/" target="_blank">who</a></p>
 <p class="what">what / what</p>
-
 <p>ê‡ñæï∂ÅB</p>
-
 <p>éQçlÉTÉCÉgÅF<a href="https://www.google.co.jp/" target="_blank" >https://www.google.co.jp/</a></p>
-
 </div>
-
 <div class="cred">
 <p class="who"><a href="https://www.google.co.jp/" target="_blank">who</a></p>
 <p class="what">what</p>
-
 <p>ê‡ñæï∂</p>
-
-<p>ê‡ñæï∂ÅB<a href="https://www.google.co.jp/" target="_blank">ï∂íÜÉäÉìÉN</a> Ç∆ <a href="https://www.google.co.jp/" target="_blank">ï∂íÜÉäÉìÉN</a> ÇªÇµÇƒ <a target="_blank" href="https://www.google.co.jp/">ï∂íÜÉäÉìÉN</a> Ç‹ÇΩ <a target="_blank" href="https://www.google.co.jp/">ï∂íÜÉäÉìÉN</a>.</p>
+<p>ê‡ñæï∂ÅB<a href="https://www.google.co.jp/" target="_blank">ï∂íÜÉäÉìÉN</a>.</p>
 </div>
 <div class="clear"></div>
 </div>
@@ -136,104 +74,85 @@ Turn on JavaScript...
 <div class="inner">
 <h1>plot3d</h1>
 <ul>
-	<li id="military">
-	Large
-	<span class="total"></span></li>
-	
-	<li id="CAS">
+	<li id="G1">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
 	</span>
-	</span>100000Å`<span class="total"></span></li>
+	</span>Å`<span class="total"></span></li>
 	
-	<li id="CCA">
+	<li id="G2">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>50001Å`<span class="total"></span></li>
+	</span></span>Å`<span class="total"></span>
+	</li>
 	
-	<li id="EOF">
+	<li id="G3">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>25001Å`50000<span class="total"></span></li>
+	</span></span>Å`<span class="total"></span></li>
 	
-	<li id="DF">
+	<li id="G4">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>20001Å`25000<span class="total"></span></li>
+	</span></span>Å`<span class="total"></span></li>
 	
-	<li id="IDF">
+	<li id="G5">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>15001Å`20000<span class="total"></span></li>
+	</span></span>Å`<span class="total"></span></li>
 	
-	<li id="RTA">
+	<li id="G6">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>10001Å`15000<span class="total"></span></li>
+	</span></span>Å`<span class="total"></span></li>
 	
-	<li id="UNKNOWN">
+	<li id="G7">
 	<span class="title">
 	<span class="swatch" >
 	&nbsp;
-	</span></span>5001Å`10000<span class="total"></span></li>
-</ul>
+	</span></span>Å`<span class="total"></span></li>
 
-<ul>
-	<li id="insurgent">
-	Normal
-	<span class="total"></span></li>
+	<li id="G8">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Å`<span class="total"></span></li>
+	
+	<li id="G9">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Å`<span class="total"></span></li>
+	
+	<li id="G10">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Å`<span class="total"></span></li>
+	
+	<li id="G11">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Å`<span class="total"></span></li>
+	
+	<li id="G12">
+	<span class="title">
+	<span class="swatch" >
+	&nbsp;
+	</span></span>Å`<span class="total"></span></li>
 
-	<li id="I_DF">
+	<li id="total">
 	<span class="title">
 	<span class="swatch" >
-	&nbsp;
-	</span></span>4001Å`5000<span class="total"></span></li>
-	
-	<li id="I_IDF">
-	<span class="title">
-	<span class="swatch" >
-	&nbsp;
-	</span></span>3001Å`4000<span class="total"></span></li>
-	
-	<li id="I_IED">
-	<span class="title">
-	<span class="swatch" >
-	&nbsp;
-	</span></span>2001Å`3000<span class="total"></span></li>
-	
-	<li id="I_COMPLEX">
-	<span class="title">
-	<span class="swatch" >
-	&nbsp;
-	</span></span>1001Å`2000<span class="total"></span></li>
-	
-	<li id="I_OTHER">
-	<span class="title">
-	<span class="swatch" >
-	&nbsp;
-	</span></span>Å`1000<span class="total"></span></li>
-	
-</ul>
+	</span>total</span>&nbsp;<span class="total"></span></li>
 
-<ul>
-	
-	<li id="killed">
-	<span class="title">
-	<span class="swatch" >
-	</span>C-File</span>&nbsp;<span class="total"></span></li>
-	
-	<li id="wounded">
-	<span class="title">
-	<span class="swatch" style="width: 2px; height: 2px; margin-top: 8px; margin-left: 3px; margin-right: 18px;">
-	</span>H-File</span>&nbsp;<span class="total"></span></li>
-
-	
 </ul>
 
 <a id="aboutlink" href="#" onclick="return showAbout()">
